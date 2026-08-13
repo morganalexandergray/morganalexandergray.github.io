@@ -148,6 +148,45 @@
             line-height: 1.75;
         }
 
+        /* ── Collaboration callout ── */
+        .collab-callout {
+            margin-top: 1.75rem;
+            padding: 1.25rem 1.5rem;
+            border-left: 3px solid var(--accent);
+            background: var(--bg-surface);
+            border-radius: 0 10px 10px 0;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .collab-callout .collab-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .collab-callout p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .collab-callout a {
+            color: var(--accent-hover);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .collab-callout a:hover {
+            color: var(--accent);
+        }
+
+        /* ── Sidebar ── */
         .sidebar-name {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.75rem;
@@ -476,21 +515,21 @@
     </nav>
 
     <!-- ── Hero ── -->
-<div class="container">
+    <div class="container">
         <div class="hero">
- 
+
             <div class="hero-main" id="about">
                 <img class="hero-photo" src="Gray_Morgan_963--26830-cr-Retouched.jpg" alt="Morgan A. Gray">
                 <div class="hero-bio">
                     <p>My research in Artificial Intelligence and Law focuses on case-based reasoning and legal argumentation with statistical methods. My research is motivated by the long standing research in AI and Law focusing on using formal models to analyze precedent, produce arguments, and model reasoning. I seek to accomplish the same but through statistical methods, which are generally more scalable. My dissertation, THETICAL, researches the intersection of machine learning (ML) prediction, legal argumentation, and machine explanation. I also devote a significant amount of time to studying AI Literacy in legal education.</p>
                 </div>
- 
+
                 <div class="collab-callout">
                     <div class="collab-heading">Interested in collaborating?</div>
-                    <p>I'm always happy to hear from researchers and practitioners working at the intersection of AI, law, and legal education. I'm especially drawn to projects involving case-based reasoning, legal argumentation, ML explainability, and AI literacy in legal curricula. The collaborations I find most rewarding tend to start with a concrete question or problem—so if you have one in mind, I'd genuinely enjoy hearing about it. Drop me a line at <a href="mailto:mag454@pitt.edu">mag454 AT pitt DOT edu</a>.</p>
+                    <p>I'm always happy to hear from researchers and practitioners working at the intersection of AI, law, and legal education. I'm especially drawn to projects involving case-based reasoning, legal argumentation, ML explainability, and AI literacy in legal curricula. The collaborations I find most rewarding tend to start with a concrete question or problem&#8202;—&#8202;so if you have one in mind, I'd love to hear about it. Drop me a line at <a href="mailto:morgan.gray@stthomas.edu">morgan.gray@stthomas.edu</a>.</p>
                 </div>
             </div>
- 
+
             <div class="sidebar">
                 <div class="sidebar-name">Morgan A. Gray, Esq.</div>
                 <div class="sidebar-title">Assistant Professor of Law</div>
@@ -500,7 +539,7 @@
                     <a href="https://law.stthomas.edu/about/faculty-staff/directory/morgan-gray/">University of St.&nbsp;Thomas School of Law</a><br>
                     <a href="https://www.isp.pitt.edu/people/morgan-gray">University of Pittsburgh, Intelligent Systems Program</a>
                 </div>
- 
+
                 <div class="sidebar-links">
                     <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=50_PZ4MAAAAJ">Google Scholar</a>
                     <a href="https://www.law.pitt.edu/center-text-analytic-methods-legal-studies">Text Analytics Center</a>
@@ -511,7 +550,7 @@
                     <a href="https://www.lrdc.pitt.edu/people/researcher-detail.cshtml?id=3144">LRDC</a>
                 </div>
             </div>
- 
+
         </div>
     </div>
 
@@ -532,7 +571,7 @@
                 <div class="course-card">
                     <div class="course-name">Introduction to Computation</div>
                     <div class="course-institution">University of St.&nbsp;Thomas School of Law</div>
-                    <p class="course-desc">A foundational course in computational thinking designed for law students with little to no technical background. Students develop core skills in logic, abstraction, algorithmic reasoning, and basic programming in Python, all situated within the context of legal practice. Topics include data types, control flow, functions, and elementary data structures. The focus of the course is to introduce students to good practices in computational thinking and how to translate those ideas to solving problems in law with computation..</p>
+                    <p class="course-desc">A foundational course in computational thinking designed for law students with little to no technical background. Students develop core skills in logic, abstraction, algorithmic reasoning, and basic programming in Python, all situated within the context of legal practice. Topics include data types, control flow, functions, and elementary data structures. The focus of the course is to introduce students to good practices in computational thinking and how to translate those ideas to solving problems in law with computation.</p>
                     <div class="course-offerings">Previously offered as <em>Programming for Lawyers</em> &middot; Fall 2022, 2023, 2024</div>
                 </div>
 
@@ -554,7 +593,7 @@
 
             <ul class="pub-list">
 
-                 <li class="pub-item">
+                <li class="pub-item">
                     <div class="pub-title"><a href="https://www.cambridge.org/core/books/abs/equalizing-justice/machine-learning/D23F7DBC52DA9F262E85FFCAB7C3F110#access-block">Machine Learning</a></div>
                     <div class="pub-meta">
                         <span class="pub-year">2026</span>
@@ -571,7 +610,6 @@
                         <span class="pub-venue">ICAIL 2025, Chicago, IL, USA</span>
                     </div>
                 </li>
-
 
                 <li class="pub-item">
                     <div class="pub-title"><a href="https://arxiv.org/html/2410.07504v1">Using LLMs to Discover Legal Factors</a></div>
@@ -663,4 +701,3 @@
 
 </body>
 </html>
-
