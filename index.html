@@ -5,202 +5,637 @@
     <title>Morgan A. Gray, Esq.</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap and custom styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-deep: #08060f;
+            --bg-primary: #0d0a16;
+            --bg-surface: #14111f;
+            --bg-elevated: #1c1830;
+            --accent: #8b5cf6;
+            --accent-hover: #a78bfa;
+            --accent-dim: #6d3fd4;
+            --accent-glow: rgba(139, 92, 246, 0.12);
+            --accent-glow-strong: rgba(139, 92, 246, 0.25);
+            --text-primary: #edebf4;
+            --text-secondary: #9e97b8;
+            --text-tertiary: #6b6484;
+            --border: #2a2542;
+            --border-accent: rgba(139, 92, 246, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            font-family: 'Oswald', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .navbar-inverse {
-            background-color: #333;
-            border-color: #444;
+        /* ── Nav ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 6, 15, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .navbar-inverse .navbar-nav > li > a {
-            color: #e0e0e0;
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
         }
 
-        .navbar-inverse .navbar-nav > li > a:hover {
-            color: #a0a0a0;
-            background-color: #222;
+        .nav-brand {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.01em;
         }
 
-        a {
-            color: #3242a8;
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 0.25rem;
         }
 
-        a:hover {
-            color: #bb7733;
-        }
-
-        h2, h3 {
-            border-bottom: 2px solid #3242a8;
-            padding-bottom: 10px;
-        }
-
-        .img-responsive {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px #888888;
-        }
-
-        dd a {
+        .nav-links a {
             display: block;
-            margin-bottom: 10px;
+            padding: 0.5rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
         }
 
-        .paper {
-            margin-top: 10px;
+        .nav-links a:hover {
+            color: var(--text-primary);
+            background: var(--accent-glow);
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: currentColor;
+            margin: 4px 0;
+            border-radius: 1px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 4rem 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .hero-photo {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 40px rgba(139, 92, 246, 0.08), 0 0 0 1px var(--border);
+        }
+
+        .hero-bio {
+            margin-top: 1.5rem;
+        }
+
+        .hero-bio p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        .sidebar-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.9rem;
+            color: var(--accent-hover);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+
+        .sidebar-contact {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .sidebar-contact a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .sidebar-contact a:hover {
+            color: var(--accent-hover);
+        }
+
+        .sidebar-contact .email {
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.02em;
+        }
+
+        .sidebar-links {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sidebar-links a {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .sidebar-links a:hover {
+            color: var(--accent-hover);
+            border-color: var(--border-accent);
+            background: var(--accent-glow);
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 3.5rem 0;
+        }
+
+        .section-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+            border-radius: 2px;
+        }
+
+        /* Thin separator between sections */
+        section + section {
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Course Cards ── */
+        .course-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .course-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem 1.75rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .course-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .course-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .course-institution {
+            font-size: 0.8rem;
+            color: var(--accent-hover);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .course-offerings {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        /* ── Publication list ── */
+        .pub-list {
+            list-style: none;
+        }
+
+        .pub-item {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .pub-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent-hover);
+        }
+
+        .pub-meta {
+            margin-top: 0.3rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .pub-venue {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .pub-year {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ── CV section ── */
+        .cv-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .cv-block p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            max-width: 480px;
+        }
+
+        .cv-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .cv-link:hover {
+            background: var(--accent-dim);
+            box-shadow: 0 0 20px var(--accent-glow-strong);
+        }
+
+        .cv-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+        }
+
+        footer a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2.5rem 0 2rem;
+            }
+
+            .hero-main {
+                order: 1;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .hero-photo {
+                max-width: 280px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(8, 6, 15, 0.97);
+                backdrop-filter: blur(16px);
+                padding: 0.5rem 1rem 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .cv-block {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sidebar-name {
+                font-size: 1.5rem;
+            }
         }
     </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#teaching">Teaching</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#cv">CV</a></li>
-                </ul>
-            </div>
+    <!-- ── Navigation ── -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">M. Gray</a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#cv">CV</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Page Content -->
+    <!-- ── Hero ── -->
     <div class="container">
-    
-            <div class="row">
-    
-                <!-- Entries Column -->
-                <div class="col-md-8" style="height: 100vh;">
-    
-                    <!-- Main Image -->
-                    <img class="img-responsive" src="Gray_Morgan_963--26830-cr-Retouched.jpg" alt=""><br>
-    
-                    <div style="margin-top:3%; text-align:justify;">
-                        <p>My research in Artificial Intelligence and Law focuses on the automated drafting of legal arguments using legal factors.  My reserach has explored the automatic extraction of legal factors from court opinions and using extracted factors in machine learning to make predictions and analyze the outcome of cases.  My most recent papers explore the unsupervised identification of factor based representations of legal problems in domains where such representations have not been identified.  Also, I have explored the usage of LLMs to perform legal reasoning using expert crafted argument schemes.  </p>
-    
-                        <!-- <p>Below are links to papers describing results from a number of experiments aimed at achieving the aims described above.</p>
-    
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> -->
-                    </div>
+        <div class="hero">
+
+            <div class="hero-main" id="about">
+                <img class="hero-photo" src="Gray_Morgan_963--26830-cr-Retouched.jpg" alt="Morgan A. Gray">
+                <div class="hero-bio">
+                    <p>My research in Artificial Intelligence and Law focuses on the automated drafting of legal arguments using legal factors. I have explored the automatic extraction of legal factors from court opinions and using extracted factors in machine learning to predict and analyze the outcomes of cases. My most recent work explores the unsupervised identification of factor-based representations of legal problems in domains where such representations have not yet been identified, as well as the use of LLMs to perform legal reasoning with expert-crafted argument schemes.</p>
                 </div>
-    
-                <!-- Contact Info on the Sidebar -->
-                <div class="col-md-4">
-                    <div style="font-family: 'Oswald', sans-serif; font-size: 32px;"><b>Morgan A. Gray, Esq.</b></div><br>
-                    <p><b>mag454 AT pitt DOT edu</b><br>
-                    <p>Intelligent Systems Program<br>
-                    University of Pittsburgh<br>
-                    <!-- Street<br>
-                    City <br>
-                    Country<br> -->
-                    </p>
-                </div>
-    
-    
-                <!-- Links on the Sidebar -->
-                <div class="col-md-4" style="margin-top:2%">
-                    <dd><a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=50_PZ4MAAAAJ">Google Scholar</a></dd>
-              <dd><a href="https://www.law.pitt.edu/center-text-analytic-methods-legal-studies#:~:text=The%20Center%20for%20Text%20Analytic,School%2C%20and%20Worcester%20Polytechnic%20Institute.">Center for Text Analytic Methods in Legal Studies</a></dd>
-              <dd><a href="https://dblp.org/pid/245/3483.html">dblp</a></dd>
-                  <dd><a href="https://www.researchgate.net/profile/Morgan-Gray-13?ev=hdr_xprf">ResearchGate</a></dd>
-                  <dd><a href="https://www.linkedin.com/in/morgan-gray-51525410b/">LinkedIn</a></dd>
-              <dd><a href="https://www.duq.edu/faculty-and-staff/morgan-gray.php">Duquesne University, Thomas R. Kline School of Law</a></dd>
-              <dd><a href="https://www.isp.pitt.edu/people/morgan-gray">University of Pittsburgh, Intelligent Systems Program</a></dd>
-              <dd><a href="https://www.lrdc.pitt.edu/people/researcher-detail.cshtml?id=3144">University of Pittsburgh, Learning Research and Development Center</a></dd>
-                </div>
-    
-                <!-- Teaching -->
-                <div class="col-md-8" style="height: 100vh;">
-                    <h2 id="teaching">Teaching</h2>
-    
-                    <h3>Courses Taught</h3>
-                    <b>Duquesne University, Thomas R. Kline School of Law</b><br/>
-                    <ul>
-                    <li class="paper" words="programming, lawyers"><b>Title: Programming for Lawyers</b><br><em>Description:</em><br><p>This is an introductory course on the Python programming language customized for law students that have little to no programming experience.  We cover the basics of the language including basic syntax, data types, basic operations, built in functions, user defined functions, basic data structures, and iteration.  We touch on more complicated topics such as object oriented programming and give an introduction as to how programming is currently being used in the legal domain.  Students are required to complete two homework assignments a week, an individual project, and a final project solving a problem, or starting to solve a problem that is faced by the legal domain.</p><p>Offerings: Fall 2022, 2023, 2024</p></li>
-                        <li class="paper" words="programming, lawyers"><b>Title: Natural Language Lawyering</b><br><em>Description:</em><br><p>This course serves as an introduction to Natural Language Processing for lawyers.  In this class, students develop high level intuitions to aid in understanding major concepts in NLP (embeddings, langauge modelling, prompting techniques, etc.).  I focus on providing students with a meaningful technical understanding so if they encounter NLP based technology in practice they understand the implications of the technology and the importance of factors such as training data, training methodology, prompt engineering, etc.  The course also introduces how these major methods have been applied in AI and Law.  For students who have taken my programming course, I also offer a simulation, where students can apply the information learned in lecture to solve basic tasks in NLP and Law.</p><p>Offerings: Fall 2024</p></li>
-                    </ul>
-                </div>
-    
-                <!-- Publications -->
-<!--                 <div class="col-md-8" style="height: 100vh;"> -->
-                <div class="col-md-8" style="height: auto;">
-                    <h2 id="publications">Selected Publications</h2>
-    
-                    <strong>Peer-reviewed</strong><br/>
-                    <ul>
-    <!-- 		    <li class="paper" words="add, your, keywords, here"><a href="#gray_etal_icail_2023_2.pdf">Automatic Identification and Empirical Analysis of Legally Relevant Factors</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> <b>In:</b> Proceedings of the Nineteenth International Conference of Artificial Intelligence and Law (ICAIL 2023) </li><br> -->
-    <!--            <li class="paper" words="add, your, keywords, here"><a href="#gray_etal_icail_2023_2.pdf">An Accessible and Interpretable Framework for Recognizing Legal Textual Entailment</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Morgan A. Gray, Kyle R. Buettner, Wesley M. Oliver, Malihe Alikhani <br> <i>Forthcoming 2023</i> </li><br> -->
-                        <li class="paper" words="add, your, keywords, here"><a href="https://arxiv.org/html/2410.07504v1">Using LLMs to Discover Legal Factors</a> <br> <b>Year: </b>2024 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> Legal Knowledge and Information Systems (JURIX 2024) </li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?user=50_PZ4MAAAAJ&hl=en">Empirical Legal Analysis Simplified: Reducing Complexity through Automatic Identification and Evaluation of Legally Relevant Factors</a> <br> <b>Year: </b>2024 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> Philosophical Transactions of the Royal Society A </li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:roLk4NBRz8UC">Can GPT Reduce The Burden of Annotation?</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> Legal Knowledge and Information Systems (JURIX 2023) </li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://scholarship.law.uc.edu/uclr/vol92/iss4/13/">Computationally Assessing Suspicion</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Wesley Oliver, Morgan Gray, Jaromir Savelka, Kevin Ashley <br> 91 U. Cin. L. Rev.  <i>Forthcoming 2024</i> </li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://dl.acm.org/conference/icail">Automatic Identification and Empirical Analysis of Legally Relevant Factors</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> <b>In:</b> Proceedings of the Nineteenth International Conference of Artificial Intelligence and Law (ICAIL 2023) </li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://sites.google.com/view/asail/asail-home">Can GPT-4 Support Analysis of Textual Data in Tasks Requiring Highly Specialized Domain Expertise?</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Jaromir Savelka, Kevin D. Ashley, Morgan A. Gray, Hannes Westermann, and Huihui Xu <br> <b>In:</b> Proceedings of the Sixth Workshop on Automated Semantic Analysis of Information in Legal Text (ASAIL 2023)</li><br>
-                    <li class="paper" words="add, your, keywords, here"><a href="https://site.unibo.it/hypermodelex/en/agenda/ai4legs-2023">Explaining Legal Concepts with Augmented Large Language Models (GPT-4)</a> <br> <b>Year: </b>2023 <br> <b>Authors:</b> Jaromir Savelka, Kevin D. Ashley, Morgan A. Gray, Hannes Westermann, and Huihui Xu <br> <b>In:</b> Proceedings of the Workshop on AI for Legislation (AI4Legs 2023) </li><br>
-<!--                     <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:Y0pCki6q_DkC">Toward Automatically Identifying Legally Relevant Factors</a> <br> <b>Year: </b>2022 <br> <b>Authors:</b> Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley <br> <b>In:</b> Legal Knowledge and Information Systems (JURIX 2022) </li><br> -->
-<!--                <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:YsMSGLbcyi4C">Identifying Factors of Suspicion</a> <br> <b>Year: </b>2020 <br> <b>Authors:</b> Morgan Gray, Wesley Oliver, Arthur Crivella <br> <b>In:</b> Legal Knowledge and Information Systems (JURIX 2020) </li><br> -->
-<!--                <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:eQOLeE2rZwMC">Reducing Subjectivity and Bias in an Officer's Analysis of Suspicion in Drug Interdiction Stops</a> <br> <b>Year: </b>2019 <br> <b>Authors:</b> Wesley Oliver, Arthur Crivella, Morgan Gray <br> <b>In:</b> Proceedings of the Seventeenth International Conference on Artificial Intelligence and Law (ICAIL 2021) </li><br> -->
-<!--                <li class="paper" words="add, your, keywords, here"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:W7OEmFMy1HYC">Coding Suspicion</a> <br> <b>Year: </b>2018 <br> <b>Authors:</b> Arthur Crivella, Wesley Oliver, Morgan Gray <br> <b>In:</b> Legal Knowledge and Information Systems (Jurix 2018) </li><br> -->
-                    </ul>
-                    <!--
-                    <strong>Technical Reports</strong><br/>
-                    <ul>
-                    <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a>. Details of the report</li>
-                    </ul> -->
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-name">Morgan A. Gray, Esq.</div>
+                <div class="sidebar-title">Assistant Professor of Law</div>
+                <div class="sidebar-contact">
+                    <span class="email">mag454 AT pitt DOT edu</span><br>
+                    <a href="https://law.stthomas.edu/about/faculty-staff/directory/morgan-gray/">University of St.&nbsp;Thomas School of Law</a><br>
+                    <a href="https://www.isp.pitt.edu/people/morgan-gray">University of Pittsburgh, Intelligent Systems Program</a>
                 </div>
 
-            <!-- CV -->
-                <div class="col-md-8" style="height: 100vh;">
-                    <h2 id="cv">CV</h2>
-                    <strong>
-                            <p>View my complete CV for more detailed information about my academic and professional background.</p>
-                            <a href="/cv_2024_web.pdf" target="_blank">Download CV</a>
-                    </strong>
-                    <br/>
-                    <ul>
-                      <!-- Add Link to Pdf -->
-                      <p> </p>
-                    </ul>
-                    <!--
-                    <strong>Technical Reports</strong><br/>
-                    <ul>
-                    <li class="paper" words="add, your, keywords, here"><a href="#">Full title</a>. Details of the report</li>
-                    </ul> -->
+                <div class="sidebar-links">
+                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=50_PZ4MAAAAJ">Google Scholar</a>
+                    <a href="https://www.law.pitt.edu/center-text-analytic-methods-legal-studies">Text Analytics Center</a>
+                    <a href="https://dblp.org/pid/245/3483.html">dblp</a>
+                    <a href="https://www.researchgate.net/profile/Morgan-Gray-13">ResearchGate</a>
+                    <a href="https://www.linkedin.com/in/morgan-gray-51525410b/">LinkedIn</a>
+                    <a href="https://law.stthomas.edu/about/faculty-staff/directory/morgan-gray/">St.&thinsp;Thomas Law</a>
+                    <a href="https://www.lrdc.pitt.edu/people/researcher-detail.cshtml?id=3144">LRDC</a>
                 </div>
+            </div>
 
+        </div>
     </div>
-    <!-- /.container -->
 
-    <!-- Other people may like it too! -->
-    <a style="color:#b5bec9;font-size:0.8em; float:right;" href="https://github.com/mavroudisv/plain-academic">Plain Academic</a>
+    <!-- ── Teaching ── -->
+    <div class="container">
+        <section id="teaching">
+            <h2 class="section-heading">Teaching</h2>
+
+            <div class="course-grid">
+
+                <div class="course-card">
+                    <div class="course-name">Civil Procedure</div>
+                    <div class="course-institution">University of St.&nbsp;Thomas School of Law</div>
+                    <p class="course-desc">A foundational course covering the rules and principles governing civil litigation in federal courts. Topics include personal jurisdiction, subject matter jurisdiction, venue, pleading standards, joinder, discovery, summary judgment, trial, and the Erie doctrine. The course emphasizes the procedural framework through which substantive rights are enforced and develops students' capacity for rigorous procedural analysis.</p>
+                    <div class="course-offerings">Offerings: Fall 2025, Spring 2026</div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-name">Introduction to Computation</div>
+                    <div class="course-institution">University of St.&nbsp;Thomas School of Law</div>
+                    <p class="course-desc">A foundational course in computational thinking designed for law students with little to no technical background. Students develop core skills in logic, abstraction, algorithmic reasoning, and basic programming in Python, all situated within the context of legal practice. Topics include data types, control flow, functions, and elementary data structures, alongside an introduction to how computation is reshaping the legal profession. Students complete regular problem sets and a capstone project addressing a real challenge in legal practice.</p>
+                    <div class="course-offerings">Previously offered as <em>Programming for Lawyers</em> &middot; Fall 2022, 2023, 2024</div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-name">Natural Language Lawyering</div>
+                    <div class="course-institution">University of St.&nbsp;Thomas School of Law</div>
+                    <p class="course-desc">An introduction to Natural Language Processing for lawyers. Students develop high-level intuitions around major concepts in NLP—embeddings, language modeling, prompting techniques—gaining a meaningful technical understanding so that encounters with NLP-based technology in practice are informed by an appreciation of training data, training methodology, prompt engineering, and their implications. The course also surveys how these methods have been applied in AI and Law. Students who have completed Introduction to Computation may opt into a simulation track, applying lecture concepts to basic tasks in NLP and Law.</p>
+                    <div class="course-offerings">Offerings: Fall 2024</div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- ── Publications ── -->
+    <div class="container">
+        <section id="publications">
+            <h2 class="section-heading">Selected Publications</h2>
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://arxiv.org/html/2410.07504v1">Using LLMs to Discover Legal Factors</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2024</span>
+                        Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley<br>
+                        <span class="pub-venue">Legal Knowledge and Information Systems (JURIX 2024)</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://scholar.google.com/citations?user=50_PZ4MAAAAJ&hl=en">Empirical Legal Analysis Simplified: Reducing Complexity through Automatic Identification and Evaluation of Legally Relevant Factors</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2024</span>
+                        Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley<br>
+                        <span class="pub-venue">Philosophical Transactions of the Royal Society A</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=50_PZ4MAAAAJ&citation_for_view=50_PZ4MAAAAJ:roLk4NBRz8UC">Can GPT Reduce The Burden of Annotation?</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2023</span>
+                        Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley<br>
+                        <span class="pub-venue">Legal Knowledge and Information Systems (JURIX 2023)</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://scholarship.law.uc.edu/uclr/vol92/iss4/13/">Computationally Assessing Suspicion</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2023</span>
+                        Wesley Oliver, Morgan Gray, Jaromir Savelka, Kevin Ashley<br>
+                        <span class="pub-venue">91 U. Cin. L. Rev.</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://dl.acm.org/conference/icail">Automatic Identification and Empirical Analysis of Legally Relevant Factors</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2023</span>
+                        Morgan Gray, Jaromir Savelka, Wesley Oliver, Kevin Ashley<br>
+                        <span class="pub-venue">Proceedings of the Nineteenth International Conference on Artificial Intelligence and Law (ICAIL 2023)</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://sites.google.com/view/asail/asail-home">Can GPT-4 Support Analysis of Textual Data in Tasks Requiring Highly Specialized Domain Expertise?</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2023</span>
+                        Jaromir Savelka, Kevin D. Ashley, Morgan A. Gray, Hannes Westermann, Huihui Xu<br>
+                        <span class="pub-venue">Proceedings of the Sixth Workshop on Automated Semantic Analysis of Information in Legal Text (ASAIL 2023)</span>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title"><a href="https://site.unibo.it/hypermodelex/en/agenda/ai4legs-2023">Explaining Legal Concepts with Augmented Large Language Models (GPT-4)</a></div>
+                    <div class="pub-meta">
+                        <span class="pub-year">2023</span>
+                        Jaromir Savelka, Kevin D. Ashley, Morgan A. Gray, Hannes Westermann, Huihui Xu<br>
+                        <span class="pub-venue">Proceedings of the Workshop on AI for Legislation (AI4Legs 2023)</span>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+    </div>
+
+    <!-- ── CV ── -->
+    <div class="container">
+        <section id="cv">
+            <h2 class="section-heading">CV</h2>
+            <div class="cv-block">
+                <p>View my complete CV for more detailed information about my academic and professional background.</p>
+                <a class="cv-link" href="/cv_2024_web.pdf" target="_blank">
+                    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 12L3 7h3V1h4v6h3L8 12zm-6 2h12v2H2v-2z"/></svg>
+                    Download CV
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer>
+        <div class="container">
+            &copy; 2026 Morgan A. Gray &middot; <a href="https://github.com/mavroudisv/plain-academic">Plain Academic</a>
+        </div>
+    </footer>
 
 </body>
-
 </html>
 
